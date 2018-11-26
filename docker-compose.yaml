@@ -1,0 +1,41 @@
+  version: '3.0'
+  services:
+    jaeger:
+      image: jaegertracing/all-in-one:latest
+      ports:
+        - "5775:5775/udp"
+        - "6831:6831/udp"
+        - "6832:6832/udp"
+        - "5778:5778"
+        - "16686:16686"
+        - "14268:14268"
+        - "9411:9411"
+      environment:
+         - SPAN_STORAGE_TYPE=memory
+         - JAEGER_SERVICE_NAME=wellcal
+         - JAEGER_AGENT_HOST=jaeger-agent
+         - JAEGER_ENDPOINT=http://jaeger-collector:14268/api/traces
+         - JAEGER_AGENT_HOST_PORT=jaeger-agent:6831
+         - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
+
+    welldir:
+        container_name: welldir
+        build:
+         context: ./wellDir
+        image: amitdocker/welldir:1.2
+        ports:
+          - "3000:3000"
+        expose:
+          - "3000"
+
+    wellcal:
+        container_name: wellcal
+        build:
+          context: ./wellCal
+        image: amitdocker/wellcal:1.2
+        ports:
+          - "3200:3200"
+        expose:
+         - "3200"
+         - "6831"
+         - "6832"

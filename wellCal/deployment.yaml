@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wellcal-deployment
+  labels:
+    app: wellcal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wellcal
+  template:
+    metadata:
+      labels:
+        app: wellcal
+    spec:
+      containers:
+      - name: wellcal
+        image: amitdocker/wellcal:1.2
+        ports:
+        - containerPort: 3200

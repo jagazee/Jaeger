@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: welldir-deployment
+  labels:
+    app: welldir
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: welldir
+  template:
+    metadata:
+      labels:
+        app: welldir
+    spec:
+      containers:
+      - name: welldir
+        image: amitdocker/welldir:1.2
+        ports:
+        - containerPort: 3000

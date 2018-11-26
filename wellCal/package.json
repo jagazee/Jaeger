@@ -1,0 +1,16 @@
+{
+  "name": "wellcal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "aj",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "jaeger-client": "^3.10.0",
+    "opentracing": "latest"
+  }
+}
